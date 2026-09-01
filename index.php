@@ -48,17 +48,45 @@ $hotels = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=H, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
     <h1>PHP - Hotel</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Descrizione</th>
+                <th scope="col">Parcheggio</th>
+                <th scope="col">Voto</th>
+                <th scope="col">Distanza dal centro (Km)</th>
+            </tr>
+        </thead>
+        <tbody>
+           
     <?php 
     foreach($hotels as $hotel){
-        echo "<h3>$hotel[name]</h3>";
+        $hasPark = $hotel["parking"]? "Parcheggio privato": "NO parcheggio";
+    echo  "<tr>
+                <td>$hotel[name]</td>
+                <td>$hotel[description]</td>
+                <td>$hasPark</td>
+                <td>$hotel[vote]</td>
+                <td>$hotel[distance_to_center]</td>
+            </tr>";
+
+
+    }
+    ?>
+
+        </tbody>
+    </table>
+</body>
+</html>
+
+        <!-- echo "<h3>$hotel[name]</h3>";
         echo "<p>$hotel[description]</p>";
         echo $hotel["parking"]? "<p>Parcheggio privato</p>": "<p>NO parcheggio</p>";
         echo "<p>Voto: $hotel[vote]/5</p>";
-        echo "<p>A $hotel[distance_to_center]km dal centro</p>";
-    }
-    ?>
-</body>
-</html>
+        echo "<p>A $hotel[distance_to_center]km dal centro</p>"; -->
