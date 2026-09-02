@@ -39,6 +39,11 @@ $hotels = [
 
 ];
 
+$existParking = array_key_exists('parking', $_GET);
+
+var_dump($existParking);
+var_dump($_GET);
+
 
 ?>
 
@@ -54,6 +59,10 @@ $hotels = [
 </head>
 <body class="container">
     <h1>PHP - Hotel</h1>
+    <?php 
+    // echo  " <p>$hasPark</p>";
+    echo  $existParking? "si":"no";
+    ?>
     <form action="./filter.php" method="GET">
         <label for="parking">Desideri il parcheggio?</label>
         <input type="checkbox" name="parking" id="parking">
@@ -72,18 +81,38 @@ $hotels = [
         <tbody>
            
     <?php 
-    foreach($hotels as $hotel){
-        $hasPark = $hotel["parking"]? "Parcheggio privato": "NO parcheggio";
-    echo  "<tr>
+    if ($existParking){
+
+        foreach($hotels as $hotel){
+            if($hotel["parking"]){
+
+                $hasPark = $hotel["parking"]? "Parcheggio privato": "NO parcheggio";
+                echo  "<tr>
                 <td>$hotel[name]</td>
                 <td>$hotel[description]</td>
                 <td>$hasPark</td>
                 <td>$hotel[vote]</td>
                 <td>$hotel[distance_to_center]</td>
-            </tr>";
+                </tr>";
+                
+                }
+            
+            }
+        } else {
 
-
-    }
+            foreach($hotels as $hotel){
+                $hasPark = $hotel["parking"]? "Parcheggio privato": "NO parcheggio";
+                echo  "<tr>
+                <td>$hotel[name]</td>
+                <td>$hotel[description]</td>
+                <td>$hasPark</td>
+                <td>$hotel[vote]</td>
+                <td>$hotel[distance_to_center]</td>
+                </tr>";
+                
+                
+                }
+            }
     ?>
 
         </tbody>
