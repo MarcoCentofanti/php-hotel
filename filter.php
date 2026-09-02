@@ -41,10 +41,6 @@ $hotels = [
 
 $existParking = array_key_exists('parking', $_GET);
 
-var_dump($existParking);
-var_dump($_GET);
-
-
 ?>
 
 
@@ -81,10 +77,10 @@ var_dump($_GET);
         <tbody>
            
     <?php 
-    if ($existParking){
-
         foreach($hotels as $hotel){
-            if($hotel["parking"]){
+            if($existParking && !$hotel["parking"]){
+
+            } else {
 
                 $hasPark = $hotel["parking"]? "Parcheggio privato": "NO parcheggio";
                 echo  "<tr>
@@ -98,21 +94,8 @@ var_dump($_GET);
                 }
             
             }
-        } else {
 
-            foreach($hotels as $hotel){
-                $hasPark = $hotel["parking"]? "Parcheggio privato": "NO parcheggio";
-                echo  "<tr>
-                <td>$hotel[name]</td>
-                <td>$hotel[description]</td>
-                <td>$hasPark</td>
-                <td>$hotel[vote]</td>
-                <td>$hotel[distance_to_center]</td>
-                </tr>";
-                
-                
-                }
-            }
+            
     ?>
 
         </tbody>
